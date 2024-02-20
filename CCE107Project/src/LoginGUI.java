@@ -7,8 +7,8 @@ public class LoginGUI extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
     private Container container = getContentPane();
-    private JLabel userLabel = new JLabel("USERNAME");
-    private JLabel passwordLabel = new JLabel("PASSWORD");
+    private JLabel userLabel = new JLabel("USERNAME:");
+    private JLabel passwordLabel = new JLabel("PASSWORD:");
     private JTextField userTextField = new JTextField();
     private JPasswordField passwordField = new JPasswordField();
     private JButton loginButton = new JButton("LOGIN");
