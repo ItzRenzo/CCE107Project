@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,13 +14,13 @@ public class RegistrationGUI extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
     private Container container = getContentPane();
-    private JLabel nameLabel = new JLabel("Name:");
-    private JLabel emailLabel = new JLabel("Email:");
-    private JLabel passwordLabel = new JLabel("Password:");
+    private JLabel nameLabel = new JLabel("USERNAME:");
+    private JLabel emailLabel = new JLabel("EMAIL:");
+    private JLabel passwordLabel = new JLabel("PASSWORD:");
     private JTextField nameTextField = new JTextField();
     private JTextField emailTextField = new JTextField();
     private JPasswordField passwordField = new JPasswordField();
-    private JButton registerButton = new JButton("Register");
+    private JButton registerButton = new JButton("REGISTER");
 
     RegistrationGUI() {
         setLayoutManager();
@@ -28,27 +30,64 @@ public class RegistrationGUI extends JFrame implements ActionListener {
     }
 
     private void setLayoutManager() {
-        container.setLayout(null);
     }
 
     private void setLocationAndSize() {
-        nameLabel.setBounds(50, 50, 100, 30);
-        emailLabel.setBounds(50, 100, 100, 30);
-        passwordLabel.setBounds(50, 150, 100, 30);
-        nameTextField.setBounds(150, 50, 150, 30);
-        emailTextField.setBounds(150, 100, 150, 30);
-        passwordField.setBounds(150, 150, 150, 30);
-        registerButton.setBounds(50, 206, 100, 30);
     }
 
     private void addComponentsToContainer() {
+        getContentPane().setLayout(null);
+        nameLabel.setBounds(50, 165, 100, 30);
         container.add(nameLabel);
+        emailLabel.setBounds(50, 206, 100, 30);
         container.add(emailLabel);
+        passwordLabel.setBounds(50, 247, 100, 30);
         container.add(passwordLabel);
+        nameTextField.setBounds(150, 165, 150, 30);
         container.add(nameTextField);
+        emailTextField.setBounds(150, 206, 150, 30);
         container.add(emailTextField);
+        passwordField.setBounds(150, 247, 150, 30);
         container.add(passwordField);
+        registerButton.setBounds(50, 301, 250, 30);
         container.add(registerButton);
+        
+        JButton backtologin = new JButton("Back to Login");
+        backtologin.setOpaque(false); // Must add
+        backtologin.setContentAreaFilled(false); // No fill
+        backtologin.setFocusable(false); // I'd like to set focusable false to the button.
+        backtologin.setBorderPainted(true); // I'd like to enable it.
+        backtologin.setBorder(null); // Border (No border for now)
+        
+        backtologin.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseEntered(MouseEvent e){
+            	Color blue = null;
+				backtologin.setBorder(BorderFactory.createLineBorder(blue, 2,true));
+                //When enter we can not know our mouse successfully entered to the button. So I'd like to add Border
+            }
+            @Override
+            public void mouseExited(MouseEvent e){
+            	backtologin.setBorder(null);
+                //When mouse exits no border.
+            }
+        });        
+        
+        backtologin.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+                // Goes back to LoginGUI
+                LoginGUI login = new LoginGUI();
+                login.setTitle("Login");
+                login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                login.setResizable(false);
+                login.setVisible(true);
+                login.setBounds(10, 10, 370, 600);
+                login.setLocationRelativeTo(null); 
+                dispose(); // Close the registration GUI
+        	}
+        });
+        backtologin.setBounds(110, 342, 126, 23);
+        getContentPane().add(backtologin);
     }
 
     private void addActionEvent() {
@@ -119,7 +158,7 @@ public class RegistrationGUI extends JFrame implements ActionListener {
         registration.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         registration.setResizable(false);
         registration.setVisible(true);
-        registration.setBounds(10, 10, 350, 300);
+        registration.setBounds(10, 10, 370, 600);
         registration.setLocationRelativeTo(null); // Center the registration GUI        
     }
 }
