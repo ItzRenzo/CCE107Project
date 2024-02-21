@@ -38,7 +38,7 @@ public class RegistrationGUI extends JFrame implements ActionListener {
         nameTextField.setBounds(150, 50, 150, 30);
         emailTextField.setBounds(150, 100, 150, 30);
         passwordField.setBounds(150, 150, 150, 30);
-        registerButton.setBounds(100, 200, 100, 30);
+        registerButton.setBounds(50, 206, 100, 30);
     }
 
     private void addComponentsToContainer() {
@@ -87,6 +87,16 @@ public class RegistrationGUI extends JFrame implements ActionListener {
 
                     if (rowsAffected == 1) {
                         JOptionPane.showMessageDialog(this, "Registration Successful");
+                        
+                        // Open the LoginGUI after successful registration
+                        LoginGUI login = new LoginGUI();
+                        login.setTitle("Login");
+                        login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        login.setResizable(false);
+                        login.setVisible(true);
+                        login.setBounds(10, 10, 370, 600);
+                        login.setLocationRelativeTo(null); // Center the login GUI
+                        dispose(); // Close the registration GUI
                     } else {
                         JOptionPane.showMessageDialog(this, "Registration Failed");
                     }
