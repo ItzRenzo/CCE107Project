@@ -113,6 +113,17 @@ public class LoginGUI extends JFrame implements ActionListener {
 
                 if (resultSet.next()) {
                     JOptionPane.showMessageDialog(this, "Login Successful");
+                    
+                    // Open the MainGUI
+                    MainGUI maingui = new MainGUI();
+                    maingui.setTitle("Registration");
+                    maingui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    maingui.setResizable(false);
+                    maingui.setVisible(true);
+                    setBounds(100, 100, 1379, 577);
+                    setExtendedState(JFrame.MAXIMIZED_BOTH); // Makes MainGUI Full SCreen                 
+                    maingui.setLocationRelativeTo(null); // Center the MainGUI
+                    dispose(); // Close the MainGUI
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid Username or Password");
                 }
