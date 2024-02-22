@@ -52,7 +52,7 @@ public class RegistrationGUI extends JFrame implements ActionListener {
         registerButton.setBounds(50, 301, 250, 30);
         container.add(registerButton);
         
-        JButton backtologin = new JButton("Back to Login");
+        JButton backtologin = new JButton("Already have an account?");
         backtologin.setOpaque(false); // Must add
         backtologin.setContentAreaFilled(false); // No fill
         backtologin.setFocusable(false); // I'd like to set focusable false to the button.
@@ -86,7 +86,7 @@ public class RegistrationGUI extends JFrame implements ActionListener {
                 dispose(); // Close the registration GUI
         	}
         });
-        backtologin.setBounds(110, 342, 126, 23);
+        backtologin.setBounds(101, 341, 150, 23);
         getContentPane().add(backtologin);
     }
 
