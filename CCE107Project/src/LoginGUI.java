@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,12 +21,39 @@ public class LoginGUI extends JFrame implements ActionListener {
     private JPasswordField passwordField = new JPasswordField();
     private JButton loginButton = new JButton("LOGIN");
     private JCheckBox showPassword = new JCheckBox("Show Password");
+    private JPanel LoginPanel;
 
     LoginGUI() {
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
         addActionEvent();
+        setUndecorated(true); // Remove window decorations (title bar, close button, etc.)
+
+        // Get the screen size
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        // Set the size and position of the frame to fullscreen
+        setBounds(0, 0, screenSize.width, screenSize.height);
+
+        // Set the frame to fullscreen
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        // Create a JLabel with the background image
+        ImageIcon backgroundImageIcon = new ImageIcon(("icons\\background.jpg"));
+        Image backgroundImage = backgroundImageIcon.getImage().getScaledInstance(screenSize.width, screenSize.height, Image.SCALE_SMOOTH);
+        ImageIcon scaledBackgroundImageIcon = new ImageIcon(backgroundImage);
+        JLabel backgroundLabel = new JLabel(scaledBackgroundImageIcon);
+
+        // Set the layout manager of the content pane to null
+        getContentPane().setLayout(null);
+
+        // Set the bounds of the background label to cover the entire content pane
+        backgroundLabel.setBounds(0, 0, getWidth(), getHeight());
+
+        // Add the background label to the content pane
+        getContentPane().add(backgroundLabel);
+       
     }
 
     private void setLayoutManager() {
@@ -36,21 +64,32 @@ public class LoginGUI extends JFrame implements ActionListener {
 
     private void addComponentsToContainer() {
         getContentPane().setLayout(null);
-        userLabel.setBounds(50, 150, 100, 30);
-        container.add(userLabel);
-        passwordLabel.setBounds(50, 220, 100, 30);
-        container.add(passwordLabel);
-        userTextField.setBounds(150, 150, 150, 30);
-        container.add(userTextField);
-        passwordField.setBounds(150, 220, 150, 30);
-        container.add(passwordField);
-        showPassword.setBounds(150, 250, 150, 30);
-        container.add(showPassword);
-        loginButton.setBounds(50, 299, 250, 30);
-        container.add(loginButton);
+        
+        LoginPanel = new JPanel();
+        LoginPanel.setBounds(10, 11, 345, 746);
+        getContentPane().add(LoginPanel);
+        LoginPanel.setLayout(null);
+        userLabel.setIcon(new ImageIcon("icons\\user.png"));
+        userLabel.setBounds(25, 123, 117, 14);
+        LoginPanel.add(userLabel);
+        userTextField.setBounds(25, 145, 260, 30);
+        LoginPanel.add(userTextField);
+        passwordLabel.setIcon(new ImageIcon("icons\\passwordicon.png"));
+		passwordLabel.setBounds(25, 194, 117, 23);
+        LoginPanel.add(passwordLabel);
+        passwordField.setBounds(25, 226, 260, 30);
+        LoginPanel.add(passwordField);
+    }
+
+    private void addActionEvent() {
+        showPassword.setBounds(25, 263, 150, 30);
+        LoginPanel.add(showPassword);
+        loginButton.setBounds(25, 300, 260, 30);
+        LoginPanel.add(loginButton);
         
         JButton registerbutton = new JButton("No account yet? Create one.");
-        registerbutton.setBounds(90, 340, 179, 23);
+        registerbutton.setBounds(59, 341, 179, 23);
+        LoginPanel.add(registerbutton);
         registerbutton.setOpaque(false); // Must add
         registerbutton.setContentAreaFilled(false); // No fill
         registerbutton.setFocusable(false); // I'd like to set focusable false to the button.
@@ -70,7 +109,7 @@ public class LoginGUI extends JFrame implements ActionListener {
                 //When mouse exits no border.
             }
         }); 
-        		
+        
         registerbutton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
                 // Open the RegistrationGUI
@@ -79,15 +118,12 @@ public class LoginGUI extends JFrame implements ActionListener {
                 registration.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 registration.setResizable(false);
                 registration.setVisible(true);
-                registration.setBounds(10, 10, 370, 600);
+                registration.setBounds(23, 53, 317, 489);
+                registration.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 registration.setLocationRelativeTo(null); // Center the Registration GUI
                 dispose(); // Close the Login GUI
         	}
         });
-        getContentPane().add(registerbutton);
-    }
-
-    private void addActionEvent() {
         loginButton.addActionListener(this);
         showPassword.addActionListener(this);
     }
@@ -147,10 +183,11 @@ public class LoginGUI extends JFrame implements ActionListener {
     public static void main(String[] args) {
         LoginGUI login = new LoginGUI();
         login.setTitle("Login");
-        login.setBounds(10, 10, 370, 600);
+        login.setBounds(10, 10, 370, 600);        
         login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        login.setResizable(false);
+        login.setResizable(true);
         login.setVisible(true);
+        login.setExtendedState(JFrame.MAXIMIZED_BOTH);
         login.setLocationRelativeTo(null); // Center the login GUI
     }
 }
