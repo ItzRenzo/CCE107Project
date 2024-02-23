@@ -25,6 +25,21 @@ public class RegistrationGUI extends JFrame implements ActionListener {
     private final JPanel RegistrationPanel = new JPanel();
 
     RegistrationGUI() {
+        JButton closebutton = new JButton("");
+        closebutton.setOpaque(false); // Must add
+        closebutton.setContentAreaFilled(false); // No fill
+        closebutton.setFocusable(false); // I'd like to set focusable false to the button.
+        closebutton.setBorderPainted(true); // I'd like to enable it.
+        closebutton.setBorder(null); // Border (No border for now)
+        closebutton.setIcon(new ImageIcon("icons\\close-window.png"));
+        closebutton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		System.exit(0);
+        	}
+        });
+        closebutton.setBounds(1267, 11, 89, 52);
+        getContentPane().add(closebutton);
+        
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
@@ -69,29 +84,29 @@ public class RegistrationGUI extends JFrame implements ActionListener {
         getContentPane().add(RegistrationPanel);
         RegistrationPanel.setBounds(10, 11, 345, 746);
         RegistrationPanel.setLayout(null);
-        nameLabel.setBounds(25, 113, 117, 14);
+        nameLabel.setBounds(10, 113, 117, 14);
         nameLabel.setIcon(new ImageIcon("icons\\user.png"));
         RegistrationPanel.add(nameLabel);
-        nameTextField.setBounds(25, 138, 263, 30);
+        nameTextField.setBounds(10, 138, 325, 30);
         RegistrationPanel.add(nameTextField);
-        emailTextField.setBounds(22, 200, 263, 30);
+        emailTextField.setBounds(10, 208, 325, 30);
         RegistrationPanel.add(emailTextField);
-        emailLabel.setBounds(22, 167, 100, 30);
+        emailLabel.setBounds(10, 167, 100, 30);
         emailLabel.setIcon(new ImageIcon("icons\\mail.png"));
         RegistrationPanel.add(emailLabel);
-        passwordLabel.setBounds(22, 231, 100, 30);
+        passwordLabel.setBounds(10, 240, 100, 30);
         RegistrationPanel.add(passwordLabel);
         passwordLabel.setIcon(new ImageIcon("icons\\passwordicon.png"));
-        passwordField.setBounds(22, 262, 263, 30);
+        passwordField.setBounds(10, 281, 325, 30);
         RegistrationPanel.add(passwordField);
     }
 
     private void addActionEvent() {
-        registerButton.setBounds(25, 335, 260, 30);
+        registerButton.setBounds(10, 349, 325, 30);
         RegistrationPanel.add(registerButton);
 
         JButton backtologin = new JButton("Already have an account?");
-        backtologin.setBounds(67, 376, 179, 23);
+        backtologin.setBounds(10, 390, 325, 23);
         RegistrationPanel.add(backtologin);
         backtologin.setOpaque(false); // Must add
         backtologin.setContentAreaFilled(false); // No fill
@@ -100,8 +115,43 @@ public class RegistrationGUI extends JFrame implements ActionListener {
         backtologin.setBorder(null); // Border (No border for now)
 
         RegistrationPanel.add(showPasswordCheckBox);
-        showPasswordCheckBox.setBounds(22, 299, 150, 23);
+        showPasswordCheckBox.setBounds(10, 318, 150, 23);
         RegistrationPanel.add(showPasswordCheckBox);
+        
+        JPanel logo = new JPanel();
+        logo.setBounds(10, 25, 325, 86);
+        logo.setLayout(null);
+
+        // Get the size of the JPanel
+        int panelWidth = logo.getWidth();
+        int panelHeight = logo.getHeight();
+
+        // Update the file path to use forward slashes instead of backslashes
+        ImageIcon logopic1 = new ImageIcon("icons/logo.png");
+
+        // Get the original size of the ImageIcon
+        int originalWidth = logopic1.getIconWidth();
+        int originalHeight = logopic1.getIconHeight();
+
+        // Calculate the scale factor to fit the image in the JPanel
+        double widthScale = (double) panelWidth / originalWidth;
+        double heightScale = (double) panelHeight / originalHeight;
+        double scale = Math.min(widthScale, heightScale);
+
+        // Calculate the scaled size of the image
+        int scaledWidth = (int) (originalWidth * scale);
+        int scaledHeight = (int) (originalHeight * scale);
+
+        // Create a new ImageIcon with the scaled size
+        Image scaledImage = logopic1.getImage().getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+        // Set the size of the JLabel to match the scaled size of the ImageIcon
+        JLabel logopic = new JLabel(scaledIcon);
+        logopic.setBounds(0, 0, scaledWidth, scaledHeight);
+
+        logo.add(logopic);
+        RegistrationPanel.add(logo);
 
         backtologin.addMouseListener(new MouseAdapter() {
             @Override

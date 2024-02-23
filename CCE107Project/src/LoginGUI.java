@@ -24,6 +24,21 @@ public class LoginGUI extends JFrame implements ActionListener {
     private JPanel LoginPanel;
 
     LoginGUI() {
+        JButton closebutton = new JButton("");
+        closebutton.setOpaque(false); // Must add
+        closebutton.setContentAreaFilled(false); // No fill
+        closebutton.setFocusable(false); // I'd like to set focusable false to the button.
+        closebutton.setBorderPainted(true); // I'd like to enable it.
+        closebutton.setBorder(null); // Border (No border for now)
+        closebutton.setIcon(new ImageIcon("icons\\close-window.png"));
+        closebutton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		System.exit(0);
+        	}
+        });
+        closebutton.setBounds(1267, 11, 89, 52);
+        getContentPane().add(closebutton);
+        
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
@@ -53,7 +68,6 @@ public class LoginGUI extends JFrame implements ActionListener {
 
         // Add the background label to the content pane
         getContentPane().add(backgroundLabel);
-       
     }
 
     private void setLayoutManager() {
@@ -70,31 +84,66 @@ public class LoginGUI extends JFrame implements ActionListener {
         getContentPane().add(LoginPanel);
         LoginPanel.setLayout(null);
         userLabel.setIcon(new ImageIcon("icons\\user.png"));
-        userLabel.setBounds(25, 123, 117, 14);
+        userLabel.setBounds(10, 120, 117, 14);
         LoginPanel.add(userLabel);
-        userTextField.setBounds(25, 145, 260, 30);
+        userTextField.setBounds(10, 145, 325, 30);
         LoginPanel.add(userTextField);
         passwordLabel.setIcon(new ImageIcon("icons\\passwordicon.png"));
-		passwordLabel.setBounds(25, 194, 117, 23);
+		passwordLabel.setBounds(10, 192, 117, 23);
         LoginPanel.add(passwordLabel);
-        passwordField.setBounds(25, 226, 260, 30);
+        passwordField.setBounds(10, 226, 325, 30);
         LoginPanel.add(passwordField);
     }
 
     private void addActionEvent() {
-        showPassword.setBounds(25, 263, 150, 30);
+        showPassword.setBounds(10, 263, 150, 30);
         LoginPanel.add(showPassword);
-        loginButton.setBounds(25, 300, 260, 30);
+        loginButton.setBounds(10, 300, 325, 30);
         LoginPanel.add(loginButton);
         
         JButton registerbutton = new JButton("No account yet? Create one.");
-        registerbutton.setBounds(59, 341, 179, 23);
+        registerbutton.setBounds(10, 341, 325, 23);
         LoginPanel.add(registerbutton);
         registerbutton.setOpaque(false); // Must add
         registerbutton.setContentAreaFilled(false); // No fill
         registerbutton.setFocusable(false); // I'd like to set focusable false to the button.
         registerbutton.setBorderPainted(true); // I'd like to enable it.
         registerbutton.setBorder(null); // Border (No border for now)
+        
+        JPanel logo = new JPanel();
+        logo.setBounds(10, 25, 325, 86);
+        logo.setLayout(null);
+
+        // Get the size of the JPanel
+        int panelWidth = logo.getWidth();
+        int panelHeight = logo.getHeight();
+
+        // Update the file path to use forward slashes instead of backslashes
+        ImageIcon logopic1 = new ImageIcon("icons/logo.png");
+
+        // Get the original size of the ImageIcon
+        int originalWidth = logopic1.getIconWidth();
+        int originalHeight = logopic1.getIconHeight();
+
+        // Calculate the scale factor to fit the image in the JPanel
+        double widthScale = (double) panelWidth / originalWidth;
+        double heightScale = (double) panelHeight / originalHeight;
+        double scale = Math.min(widthScale, heightScale);
+
+        // Calculate the scaled size of the image
+        int scaledWidth = (int) (originalWidth * scale);
+        int scaledHeight = (int) (originalHeight * scale);
+
+        // Create a new ImageIcon with the scaled size
+        Image scaledImage = logopic1.getImage().getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+        // Set the size of the JLabel to match the scaled size of the ImageIcon
+        JLabel logopic = new JLabel(scaledIcon);
+        logopic.setBounds(0, 0, scaledWidth, scaledHeight);
+
+        logo.add(logopic);
+        LoginPanel.add(logo);
         
         registerbutton.addMouseListener(new MouseAdapter(){
             @Override
