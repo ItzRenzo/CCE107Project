@@ -13,7 +13,6 @@ import java.sql.SQLException;
 public class RegistrationGUI extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
-    private Container container = getContentPane();
     private JLabel nameLabel = new JLabel("USERNAME:");
     private JLabel emailLabel = new JLabel("EMAIL:");
     private JLabel passwordLabel = new JLabel("PASSWORD:");

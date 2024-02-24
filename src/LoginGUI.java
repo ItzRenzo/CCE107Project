@@ -14,7 +14,6 @@ import java.sql.SQLException;
 public class LoginGUI extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
-	private Container container = getContentPane();
     private JLabel userLabel = new JLabel("USERNAME:");
     private JLabel passwordLabel = new JLabel("PASSWORD:");
     private JTextField userTextField = new JTextField();

@@ -4,12 +4,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
 
 public class MainGUI extends JFrame {
 
@@ -33,7 +31,7 @@ public class MainGUI extends JFrame {
     }
 
     /**
-     * Create the frame.
+     * Create the frame
      */
     public MainGUI() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
