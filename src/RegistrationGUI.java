@@ -83,29 +83,29 @@ public class RegistrationGUI extends JFrame implements ActionListener {
         getContentPane().add(RegistrationPanel);
         RegistrationPanel.setBounds(10, 11, 345, 746);
         RegistrationPanel.setLayout(null);
-        nameLabel.setBounds(10, 113, 117, 14);
+        nameLabel.setBounds(10, 137, 117, 14);
         nameLabel.setIcon(new ImageIcon("icons\\user.png"));
         RegistrationPanel.add(nameLabel);
-        nameTextField.setBounds(10, 138, 325, 30);
+        nameTextField.setBounds(10, 162, 325, 30);
         RegistrationPanel.add(nameTextField);
-        emailTextField.setBounds(10, 208, 325, 30);
+        emailTextField.setBounds(10, 227, 325, 30);
         RegistrationPanel.add(emailTextField);
-        emailLabel.setBounds(10, 167, 100, 30);
+        emailLabel.setBounds(10, 192, 100, 30);
         emailLabel.setIcon(new ImageIcon("icons\\mail.png"));
         RegistrationPanel.add(emailLabel);
-        passwordLabel.setBounds(10, 240, 100, 30);
+        passwordLabel.setBounds(10, 257, 100, 30);
         RegistrationPanel.add(passwordLabel);
         passwordLabel.setIcon(new ImageIcon("icons\\passwordicon.png"));
-        passwordField.setBounds(10, 281, 325, 30);
+        passwordField.setBounds(10, 287, 325, 30);
         RegistrationPanel.add(passwordField);
     }
 
     private void addActionEvent() {
-        registerButton.setBounds(10, 349, 325, 30);
+        registerButton.setBounds(10, 354, 325, 30);
         RegistrationPanel.add(registerButton);
 
         JButton backtologin = new JButton("Already have an account?");
-        backtologin.setBounds(10, 390, 325, 23);
+        backtologin.setBounds(10, 395, 325, 23);
         RegistrationPanel.add(backtologin);
         backtologin.setOpaque(false); // Must add
         backtologin.setContentAreaFilled(false); // No fill
@@ -114,11 +114,11 @@ public class RegistrationGUI extends JFrame implements ActionListener {
         backtologin.setBorder(null); // Border (No border for now)
 
         RegistrationPanel.add(showPasswordCheckBox);
-        showPasswordCheckBox.setBounds(10, 318, 150, 23);
+        showPasswordCheckBox.setBounds(10, 324, 150, 23);
         RegistrationPanel.add(showPasswordCheckBox);
         
         JPanel logo = new JPanel();
-        logo.setBounds(10, 25, 325, 86);
+        logo.setBounds(86, 25, 249, 86);
         logo.setLayout(null);
 
         // Get the size of the JPanel
@@ -126,7 +126,7 @@ public class RegistrationGUI extends JFrame implements ActionListener {
         int panelHeight = logo.getHeight();
 
         // Update the file path to use forward slashes instead of backslashes
-        ImageIcon logopic1 = new ImageIcon("icons/logo.png");
+        ImageIcon logopic1 = new ImageIcon("icons/projectlogo.png");
 
         // Get the original size of the ImageIcon
         int originalWidth = logopic1.getIconWidth();

@@ -110,7 +110,7 @@ public class LoginGUI extends JFrame implements ActionListener {
         registerbutton.setBorder(null); // Border (No border for now)
         
         JPanel logo = new JPanel();
-        logo.setBounds(10, 25, 325, 86);
+        logo.setBounds(80, 25, 255, 86);
         logo.setLayout(null);
 
         // Get the size of the JPanel
@@ -118,7 +118,7 @@ public class LoginGUI extends JFrame implements ActionListener {
         int panelHeight = logo.getHeight();
 
         // Update the file path to use forward slashes instead of backslashes
-        ImageIcon logopic1 = new ImageIcon("icons/logo.png");
+        ImageIcon logopic1 = new ImageIcon("icons/projectlogo.png");
 
         // Get the original size of the ImageIcon
         int originalWidth = logopic1.getIconWidth();
@@ -198,8 +198,12 @@ public class LoginGUI extends JFrame implements ActionListener {
                 if (resultSet.next()) {
                     JOptionPane.showMessageDialog(this, "Login Successful");
                     
+                    // Get the username of the logged-in user
+                    String loggedInUsername = resultSet.getString("username");
+                    
                     // Open the MainGUI
                     MainGUI maingui = new MainGUI();
+                    maingui.setLoggedInUsername(loggedInUsername);
                     maingui.setTitle("Registration");
                     maingui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     maingui.setResizable(false);
